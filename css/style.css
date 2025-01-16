@@ -327,6 +327,63 @@ button {
     text-decoration: underline;
 }
 
+.search-result {
+    margin-bottom: 2em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.search-result h3 {
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+.search-result p {
+    margin: 0.3em 0;
+}
+
+.examples {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid #eee;
+}
+
+.example {
+    margin: 1em 0;
+    padding: 0.5em;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.example p {
+    margin: 0.2em 0;
+}
+
+.chinglish {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.english {
+    color: #16a085;
+}
+
+.pinyin {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.chinese {
+    color: #c0392b;
+}
+
+.meaning {
+    color: #27ae60;
+    font-style: italic;
+}
+
 .result-item {
     background: white;
     border-radius: 8px;

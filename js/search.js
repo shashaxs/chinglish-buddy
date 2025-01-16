@@ -46,24 +46,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 显示搜索结果
     function displaySearchResults(results) {
-        console.log('Display results:', results.length); // 调试日志
-        
+        searchResults.innerHTML = '';
         if (results.length === 0) {
-            searchResults.innerHTML = '<div class="no-results">No results found</div>';
+            searchResults.innerHTML = '<p>未找到相关词条 / No results found</p>';
             return;
         }
 
-        searchResults.innerHTML = results.map(result => `
-            <div class="result-card">
-                <h3>${result.chinglish}</h3>
-                <p class="english">${result.english}</p>
-                <p class="pinyin">${result.pinyin}</p>
-                <p class="chinese">${result.chinese}</p>
-                <button class="favorite-btn" data-phrase='${JSON.stringify(result)}'>
-                    <span class="heart-icon">♡</span>
-                </button>
-            </div>
-        `).join('');
+        results.forEach(result => {
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'search-result';
+            
+            let examplesHtml = '';
+            if (result.examples && result.examples.length > 0) {
+                examplesHtml = '<div class="examples">' +
+                    result.examples.map(example => `
+                        <div class="example">
+                            <p class="chinglish">${example.chinglish}</p>
+                            <p class="chinese">${example.chinese}</p>
+                            <p class="meaning">${example.meaning}</p>
+                        </div>
+                    `).join('') +
+                    '</div>';
+            }
+
+            resultDiv.innerHTML = `
+                <h3 class="chinglish">${result.chinglish || ''}</h3>
+                <p class="english">${result.english || result.meaning || ''}</p>
+                <p class="pinyin">${result.pinyin || ''}</p>
+                <p class="chinese">${result.chinese || ''}</p>
+                ${examplesHtml}
+            `;
+            searchResults.appendChild(resultDiv);
+        });
     }
 
     // 执行搜索
