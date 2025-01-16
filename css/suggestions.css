@@ -1,0 +1,25 @@
+.suggestions-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 0.5rem;
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;  /* 深灰色文字，接近黑色但不会太刺眼 */
+}
+
+.suggestion-item:hover {
+    background-color: #f5f5f5;
+    color: #1e3c72;  /* 鼠标悬停时变成主题蓝色 */
+}

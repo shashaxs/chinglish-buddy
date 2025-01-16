@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinglish Buddy - Your Chinese-English Expression Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/suggestions.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="logo">
+            <h1>Chinglish Buddy</h1>
+            <p class="subtitle">Your Chinese-English Expression Guide</p>
+        </div>
+        
+        <!-- 搜索区域 -->
+        <div class="search-container">
+            <input type="text" id="search-input" 
+                   placeholder="Try: you are my vegetable" 
+                   autocomplete="off">
+            <button id="search-button">Search</button>
+        </div>
+        
+        <!-- 收藏按钮 -->
+        <div class="favorites-button">
+            <button id="show-favorites">My Favorites</button>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 搜索结果区域 -->
+        <section id="search-results" class="search-results">
+            <div class="result-card hidden">
+                <!-- 结果内容将通过 JavaScript 动态添加 -->
+            </div>
+        </section>
+
+        <!-- 热门推荐区域 -->
+        <section class="popular-phrases">
+            <h2>Popular Phrases</h2>
+            <div class="phrases-grid">
+                <div class="phrase-card">
+                    <h3>You are my vegetable</h3>
+                    <p class="english">You are my type</p>
+                    <p class="pinyin">Nǐ shì wǒ de cài</p>
+                    <p class="chinese">你是我的菜</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>Long time no see</h3>
+                    <p class="english">It's been a while</p>
+                    <p class="pinyin">Hǎo jiǔ bú jiàn</p>
+                    <p class="chinese">好久不见</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>Give you color see see</h3>
+                    <p class="english">Teach you a lesson</p>
+                    <p class="pinyin">Gěi nǐ diǎn yán sè kàn kàn</p>
+                    <p class="chinese">给你点颜色看看</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>People mountain people sea</h3>
+                    <p class="english">Crowded with people</p>
+                    <p class="pinyin">Rén shān rén hǎi</p>
+                    <p class="chinese">人山人海</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>Buddha-like</h3>
+                    <p class="english">Easy-going / Care-free</p>
+                    <p class="pinyin">Fó xì</p>
+                    <p class="chinese">佛系</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>Add oil</h3>
+                    <p class="english">Keep it up / Go for it</p>
+                    <p class="pinyin">Jiā yóu</p>
+                    <p class="chinese">加油</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>Eat vinegar</h3>
+                    <p class="english">Be jealous</p>
+                    <p class="pinyin">Chī cù</p>
+                    <p class="chinese">吃醋</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>Lie flat</h3>
+                    <p class="english">Opt out of the rat race</p>
+                    <p class="pinyin">Tǎng píng</p>
+                    <p class="chinese">躺平</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 收藏夹弹窗 -->
+    <div id="favorites-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>My Favorites</h2>
+            <div id="favorites-list">
+                <!-- 收藏内容将通过 JavaScript 动态添加 -->
+            </div>
+            <button id="export-favorites">Export</button>
+            <button id="close-modal">Close</button>
+        </div>
+    </div>
+
+    <!-- 页脚区域 -->
+    <footer class="footer">
+        <p>Have an interesting Chinglish expression? <a href="#" id="submit-phrase">Submit here</a></p>
+    </footer>
+
+    <!-- JavaScript 文件 -->
+    <script src="data/phrases.js"></script>
+    <script src="data/dictionary.js"></script>
+    <script src="js/popular-phrases.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/favorites.js"></script>
+</body>
+</html>

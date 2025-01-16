@@ -1,0 +1,77 @@
+/* 响应式布局样式 */
+
+/* 平板设备 (768px 及以下) */
+@media screen and (max-width: 768px) {
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    #search-button {
+        width: 100%;
+    }
+
+    .phrases-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+/* 手机设备 (480px 及以下) */
+@media screen and (max-width: 480px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .main-content {
+        padding: 0 0.5rem;
+    }
+
+    .result-card {
+        padding: 1rem;
+    }
+
+    .phrases-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+}
+
+/* 确保在小屏幕上的文字大小适当 */
+@media screen and (max-width: 320px) {
+    body {
+        font-size: 14px;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+    }
+}
+
+/* 大屏幕设备优化 */
+@media screen and (min-width: 1200px) {
+    .main-content {
+        max-width: 1400px;
+    }
+
+    .phrases-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
