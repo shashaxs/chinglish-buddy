@@ -72,9 +72,21 @@ const allPhrases = [
     },
     {
         chinglish: "People mountain people sea",
-        english: "Crowded with people",
+        english: "A huge crowd of people",
         pinyin: "Rén shān rén hǎi",
-        chinese: "人山人海"
+        chinese: "人山人海",
+        examples: [
+            {
+                chinglish: "The concert was people mountain people sea!",
+                chinese: "演唱会真是人山人海！",
+                meaning: "The concert was extremely crowded!"
+            },
+            {
+                chinglish: "During the festival, the street was people mountain people sea.",
+                chinese: "节日期间，街上人山人海。",
+                meaning: "During the festival, the street was packed with people."
+            }
+        ]
     },
     {
         chinglish: "No horse no tiger",
@@ -372,9 +384,21 @@ const allPhrases = [
     },
     {
         chinglish: "No eyes to watch",
-        english: "Too cringe",
+        english: "Too embarrassing to watch",
         pinyin: "Méi yǎn kàn",
-        chinese: "没眼看"
+        chinese: "没眼看",
+        examples: [
+            {
+                chinglish: "His dance moves are so awkward, no eyes watch!",
+                chinese: "他的舞姿太尴尬了，没眼看！",
+                meaning: "His dancing is so awkward, it's too embarrassing to watch!"
+            },
+            {
+                chinglish: "That performance was really no eyes watch.",
+                chinese: "那个表演真是没眼看。",
+                meaning: "That performance was really too cringeworthy to watch."
+            }
+        ]
     },
     {
         chinglish: "Embarrassed",

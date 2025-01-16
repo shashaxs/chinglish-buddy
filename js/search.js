@@ -15,32 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 搜索词条的函数
     function searchPhrases(query) {
-        if (!query) return [];
+        if (!query) {
+            searchResults.innerHTML = '';
+            return [];
+        }
         
         const normalizedQuery = normalizeString(query);
-        console.log('Searching for:', normalizedQuery); // 调试日志
         
         return allPhrases.filter(phrase => {
-            // 准备所有可能的搜索字段
-            const searchFields = {
-                chinese: phrase.chinese,
-                chinglish: phrase.chinglish.toLowerCase(),
-                english: phrase.english.toLowerCase(),
-                pinyin: phrase.pinyin.toLowerCase(),
-                normalizedPinyin: normalizeString(phrase.pinyin),
-                pinyinNoSpace: normalizeString(phrase.pinyin.replace(/\s+/g, ''))
-            };
+            const normalizedChinglish = normalizeString(phrase.chinglish);
+            const normalizedChinese = normalizeString(phrase.chinese);
+            const normalizedPinyin = normalizeString(phrase.pinyin);
+            const normalizedEnglish = normalizeString(phrase.english);
             
-            console.log('Checking phrase:', phrase.chinese, searchFields.normalizedPinyin); // 调试日志
-            
-            // 检查所有字段
-            return Object.values(searchFields).some(field => {
-                const includes = field.includes(normalizedQuery);
-                if (includes) {
-                    console.log('Match found in:', field); // 调试日志
-                }
-                return includes;
-            });
+            return normalizedChinglish.includes(normalizedQuery) ||
+                   normalizedChinese.includes(normalizedQuery) ||
+                   normalizedPinyin.includes(normalizedQuery) ||
+                   normalizedEnglish.includes(normalizedQuery);
         });
     }
 
@@ -83,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 执行搜索
     function performSearch() {
         const query = searchInput.value.trim();
-        console.log('Performing search for:', query); // 调试日志
         
         if (!query) {
             searchResults.innerHTML = '';
