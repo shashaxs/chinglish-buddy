@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 将拼音转换为无声调的形式
     function normalizeString(str) {
+        if (!str) return '';
         return str.toLowerCase()
             .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/\s+/g, '');
+            .replace(/[\u0300-\u036f]/g, '')  // 移除声调
+            .replace(/\s+/g, '');  // 移除空格
     }
 
     // 搜索词条的函数
@@ -22,15 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const normalizedQuery = normalizeString(query);
         
         return allPhrases.filter(phrase => {
-            const normalizedChinglish = normalizeString(phrase.chinglish);
-            const normalizedChinese = normalizeString(phrase.chinese);
-            const normalizedPinyin = normalizeString(phrase.pinyin);
-            const normalizedEnglish = normalizeString(phrase.english);
-            
-            return normalizedChinglish.includes(normalizedQuery) ||
-                   normalizedChinese.includes(normalizedQuery) ||
-                   normalizedPinyin.includes(normalizedQuery) ||
-                   normalizedEnglish.includes(normalizedQuery);
+            // 准备所有可能的搜索字段
+            const searchFields = [
+                normalizeString(phrase.chinglish),      // 中式英语
+                normalizeString(phrase.chinese),        // 中文
+                normalizeString(phrase.pinyin),         // 拼音（无声调）
+                normalizeString(phrase.english),        // 地道英语
+                phrase.pinyin.replace(/\s+/g, ''),      // 拼音（有声调，无空格）
+                normalizeString(phrase.pinyin.replace(/\s+/g, '')),  // 拼音（无声调，无空格）
+            ];
+
+            // 如果有例句，也加入搜索范围
+            if (phrase.examples) {
+                phrase.examples.forEach(example => {
+                    searchFields.push(
+                        normalizeString(example.chinglish),
+                        normalizeString(example.chinese),
+                        normalizeString(example.meaning)
+                    );
+                });
+            }
+
+            // 检查是否有任何字段包含搜索词
+            return searchFields.some(field => field.includes(normalizedQuery));
         });
     }
 
