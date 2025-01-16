@@ -4,19 +4,71 @@ const allPhrases = [
         chinglish: "You are my vegetable",
         english: "You are my type",
         pinyin: "Nǐ shì wǒ de cài",
-        chinese: "你是我的菜"
+        chinese: "你是我的菜",
+        examples: [
+            {
+                chinglish: "Hey, you are my vegetable!",
+                chinese: "嘿，你是我的菜！",
+                meaning: "Hey, you're just my type!"
+            },
+            {
+                chinglish: "This new colleague is totally my vegetable.",
+                chinese: "这个新同事太我的菜了。",
+                meaning: "This new colleague is exactly my type."
+            }
+        ]
+    },
+    {
+        chinglish: "Involution",
+        english: "Excessive competition with diminishing returns",
+        pinyin: "Nèi juǎn",
+        chinese: "内卷",
+        examples: [
+            {
+                chinglish: "The tech industry is full of involution.",
+                chinese: "科技行业都在内卷。",
+                meaning: "The tech industry is experiencing excessive competition."
+            }
+        ]
+    },
+    {
+        chinglish: "Lie flat",
+        english: "Opting out of societal pressure",
+        pinyin: "Tǎng píng",
+        chinese: "躺平",
+        examples: [
+            {
+                chinglish: "I decided to lie flat and quit the rat race.",
+                chinese: "我决定躺平，不再参与竞争。",
+                meaning: "I decided to opt out of the competitive lifestyle."
+            }
+        ]
     },
     {
         chinglish: "Long time no see",
         english: "It's been a while",
         pinyin: "Hǎo jiǔ bú jiàn",
-        chinese: "好久不见"
+        chinese: "好久不见",
+        examples: [
+            {
+                chinglish: "Long time no see, old friend!",
+                chinese: "好久不见，老朋友！",
+                meaning: "It's been a while, old friend!"
+            }
+        ]
     },
     {
         chinglish: "Give you color see see",
         english: "Teach you a lesson",
         pinyin: "Gěi nǐ diǎn yán sè kàn kàn",
-        chinese: "给你点颜色看看"
+        chinese: "给你点颜色看看",
+        examples: [
+            {
+                chinglish: "If you keep misbehaving, I'll give you color see see!",
+                chinese: "你要是再这样，我就给你点颜色看看！",
+                meaning: "If you keep misbehaving, I'll teach you a lesson!"
+            }
+        ]
     },
     {
         chinglish: "People mountain people sea",
@@ -508,25 +560,53 @@ const allPhrases = [
         chinglish: "Versailles",
         english: "Subtle boasting",
         pinyin: "Fán ěr sài",
-        chinese: "凡尔赛"
+        chinese: "凡尔赛",
+        examples: [
+            {
+                chinglish: "My small 200m² apartment is so cramped.",
+                chinese: "我这个小小的200平米公寓好挤啊。",
+                meaning: "Humble bragging about having a large apartment."
+            }
+        ]
     },
     {
         chinglish: "Big pig's hoof",
         english: "Mocking unreliable men",
         pinyin: "Dà zhū tí zi",
-        chinese: "大猪蹄子"
+        chinese: "大猪蹄子",
+        examples: [
+            {
+                chinglish: "He's such a big pig's hoof, always breaking promises.",
+                chinese: "他就是个大猪蹄子，总是放鸽子。",
+                meaning: "He's so unreliable, always breaking promises."
+            }
+        ]
     },
     {
         chinglish: "I'm too hard",
         english: "Life is tough",
         pinyin: "Wǒ tài nán le",
-        chinese: "我太难了"
+        chinese: "我太难了",
+        examples: [
+            {
+                chinglish: "Working overtime again, I'm too hard!",
+                chinese: "又要加班，我太难了！",
+                meaning: "Having to work overtime again, life is so tough!"
+            }
+        ]
     },
     {
         chinglish: "Throwing dog food",
         english: "Showing off couple's affection",
         pinyin: "Sā gǒu liàng",
-        chinese: "撒狗粮"
+        chinese: "撒狗粮",
+        examples: [
+            {
+                chinglish: "Stop throwing dog food on social media!",
+                chinese: "别在社交媒体上撒狗粮了！",
+                meaning: "Stop showing off your relationship on social media!"
+            }
+        ]
     },
     {
         chinglish: "Messing around is fun",
