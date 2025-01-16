@@ -1,8 +1,10 @@
-// 搜索功能增强
+// 搜索功能实现
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
     const searchResults = document.getElementById('search-results');
+    const searchSuggestions = document.getElementById('search-suggestions');
+    let selectedPhrase = null;
     let searchTimeout;
 
     // 将拼音转换为无声调的形式
@@ -15,10 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 搜索词条的函数
     function searchPhrases(query) {
-        if (!query) {
-            searchResults.innerHTML = '';
-            return [];
-        }
+        if (!query) return [];
         
         const normalizedQuery = normalizeString(query);
         
@@ -35,71 +34,107 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 显示搜索结果
-    function displaySearchResults(results) {
-        searchResults.innerHTML = '';
-        if (results.length === 0) {
-            searchResults.innerHTML = '<p>未找到相关词条 / No results found</p>';
+    // 显示搜索建议
+    function displaySuggestions(results) {
+        if (!results.length) {
+            searchSuggestions.classList.remove('active');
             return;
         }
 
-        results.forEach(result => {
-            const resultDiv = document.createElement('div');
-            resultDiv.className = 'search-result';
-            
-            let examplesHtml = '';
-            if (result.examples && result.examples.length > 0) {
-                examplesHtml = '<div class="examples">' +
-                    result.examples.map(example => `
-                        <div class="example">
-                            <p class="chinglish">${example.chinglish}</p>
-                            <p class="chinese">${example.chinese}</p>
-                            <p class="meaning">${example.meaning}</p>
-                        </div>
-                    `).join('') +
-                    '</div>';
-            }
+        searchSuggestions.innerHTML = results.map(phrase => `
+            <div class="suggestion-item" data-chinglish="${phrase.chinglish}">
+                <span class="suggestion-chinglish">${phrase.chinglish}</span>
+                <span class="suggestion-chinese">${phrase.chinese}</span>
+            </div>
+        `).join('');
 
-            resultDiv.innerHTML = `
-                <h3 class="chinglish">${result.chinglish || ''}</h3>
-                <p class="english">${result.english || result.meaning || ''}</p>
-                <p class="pinyin">${result.pinyin || ''}</p>
-                <p class="chinese">${result.chinese || ''}</p>
-                ${examplesHtml}
-            `;
-            searchResults.appendChild(resultDiv);
-        });
+        searchSuggestions.classList.add('active');
     }
 
-    // 执行搜索
-    function performSearch() {
-        const query = searchInput.value.trim();
-        
-        if (!query) {
+    // 显示选中词条的详细信息
+    function displaySelectedPhrase(phrase) {
+        if (!phrase) {
             searchResults.innerHTML = '';
             return;
         }
 
-        const results = searchPhrases(query);
-        displaySearchResults(results);
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'search-result';
+        
+        let examplesHtml = '';
+        if (phrase.examples && phrase.examples.length > 0) {
+            examplesHtml = '<div class="examples">' +
+                phrase.examples.map(example => `
+                    <div class="example">
+                        <p class="chinglish">${example.chinglish}</p>
+                        <p class="chinese">${example.chinese}</p>
+                        <p class="meaning">${example.meaning}</p>
+                    </div>
+                `).join('') +
+                '</div>';
+        }
+
+        resultDiv.innerHTML = `
+            <h3 class="chinglish">${phrase.chinglish}</h3>
+            <p class="english">${phrase.english}</p>
+            <p class="pinyin">${phrase.pinyin}</p>
+            <p class="chinese">${phrase.chinese}</p>
+            ${examplesHtml}
+        `;
+
+        searchResults.innerHTML = '';
+        searchResults.appendChild(resultDiv);
     }
 
-    // 输入事件监听
+    // 输入事件处理
     searchInput.addEventListener('input', () => {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(performSearch, 300);
+        searchTimeout = setTimeout(() => {
+            const query = searchInput.value.trim();
+            if (!query) {
+                searchSuggestions.classList.remove('active');
+                searchResults.innerHTML = '';
+                return;
+            }
+            const results = searchPhrases(query);
+            displaySuggestions(results);
+        }, 300);
     });
 
-    // 搜索按钮点击事件
-    searchButton.addEventListener('click', performSearch);
+    // 点击建议项事件
+    searchSuggestions.addEventListener('click', (e) => {
+        const suggestionItem = e.target.closest('.suggestion-item');
+        if (!suggestionItem) return;
 
-    // 回车键搜索
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            performSearch();
+        const chinglish = suggestionItem.dataset.chinglish;
+        selectedPhrase = allPhrases.find(phrase => phrase.chinglish === chinglish);
+        
+        searchInput.value = selectedPhrase.chinglish;
+        searchSuggestions.classList.remove('active');
+        displaySelectedPhrase(selectedPhrase);
+    });
+
+    // 点击其他地方关闭建议列表
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+            searchSuggestions.classList.remove('active');
         }
     });
 
-    // 初始化时清空搜索结果
-    searchResults.innerHTML = '';
+    // 搜索按钮点击事件
+    searchButton.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (!query) return;
+
+        if (selectedPhrase) {
+            displaySelectedPhrase(selectedPhrase);
+        } else {
+            const results = searchPhrases(query);
+            if (results.length > 0) {
+                selectedPhrase = results[0];
+                displaySelectedPhrase(selectedPhrase);
+            }
+        }
+        searchSuggestions.classList.remove('active');
+    });
 });
