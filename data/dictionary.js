@@ -1766,5 +1766,56 @@ const dictionary = {
                 meaning: "She's good at product promotion"
             }
         ]
+    },
+    "bdjw": {
+        chinese: "不懂就问",
+        pinyin: "bù dǒng jiù wèn",
+        meaning: "Just ask if you don't understand",
+        examples: [
+            {
+                chinglish: "BDJW, how does this app work?",
+                chinese: "不懂就问，这个应用怎么用？",
+                meaning: "Just wondering, how does this app work?"
+            },
+            {
+                chinglish: "BDJW, what's the meaning of this emoji?",
+                chinese: "不懂就问，这个表情什么意思？",
+                meaning: "Let me ask, what's the meaning of this emoji?"
+            }
+        ]
+    },
+    "u1s1": {
+        chinese: "有一说一",
+        pinyin: "yǒu yī shuō yī",
+        meaning: "Honestly speaking / To be honest",
+        examples: [
+            {
+                chinglish: "U1S1, this movie is really good!",
+                chinese: "有一说一，这电影真的很好看！",
+                meaning: "Honestly, this movie is really good!"
+            },
+            {
+                chinglish: "U1S1, I don't like this design.",
+                chinese: "有一说一，我不太喜欢这个设计。",
+                meaning: "To be honest, I don't like this design."
+            }
+        ]
+    },
+    "srds": {
+        chinese: "虽然但是",
+        pinyin: "suīrán dànshì",
+        meaning: "Nevertheless / However / Despite that",
+        examples: [
+            {
+                chinglish: "SRDS, I still think we should try.",
+                chinese: "虽然但是，我觉得我们还是应该试试。",
+                meaning: "Nevertheless, I think we should still give it a try."
+            },
+            {
+                chinglish: "The price is good, SRDS the quality is not.",
+                chinese: "价格很好，虽然但是质量不行。",
+                meaning: "The price is good, however the quality is not."
+            }
+        ]
     }
 };

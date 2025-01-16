@@ -7,6 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedPhrase = null;
     let searchTimeout;
 
+    // 将所有词条整合到一个数组中
+    const combinedPhrases = [
+        ...allPhrases,
+        ...Object.entries(dictionary).map(([key, value]) => ({
+            chinglish: key,
+            english: value.meaning,
+            pinyin: value.pinyin,
+            chinese: value.chinese,
+            examples: value.examples || []
+        }))
+    ];
+
     // 将拼音转换为无声调的形式
     function normalizeString(str) {
         if (!str) return '';
@@ -22,15 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const normalizedQuery = normalizeString(query);
         
-        return allPhrases.filter(phrase => {
+        return combinedPhrases.filter(phrase => {
             // 准备所有可能的搜索字段
             const searchFields = [
                 normalizeString(phrase.chinglish),      // 中式英语
                 normalizeString(phrase.chinese),        // 中文
                 normalizeString(phrase.pinyin),         // 拼音（无声调）
-                normalizeString(phrase.english),        // 地道英语
+                normalizeString(phrase.english),        // 地道英语/含义
                 phrase.pinyin.replace(/\s+/g, ''),      // 拼音（有声调，无空格）
                 normalizeString(phrase.pinyin.replace(/\s+/g, '')),  // 拼音（无声调，无空格）
+                phrase.chinglish.toLowerCase()          // 原始英文（处理缩写词如xswl）
             ];
 
             // 如果有例句，也加入搜索范围
@@ -121,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!suggestionItem) return;
 
         const chinglish = suggestionItem.dataset.chinglish;
-        selectedPhrase = allPhrases.find(phrase => phrase.chinglish === chinglish);
+        selectedPhrase = combinedPhrases.find(phrase => phrase.chinglish === chinglish);
         
         searchInput.value = selectedPhrase.chinglish;
         searchSuggestions.classList.remove('active');
