@@ -43,8 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         searchSuggestions.innerHTML = results.map(phrase => `
             <div class="suggestion-item" data-chinglish="${phrase.chinglish}">
-                <span class="suggestion-chinglish">${phrase.chinglish}</span>
-                <span class="suggestion-chinese">${phrase.chinese}</span>
+                ${phrase.chinglish}
             </div>
         `).join('');
 
